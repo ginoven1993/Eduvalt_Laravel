@@ -182,7 +182,7 @@ class CourseController extends Controller
         'formateurs.Nom_formateur as Nom_formateur',
         'formateurs.title as formateur_title',
         'formateurs.long_bio as long_bio',
-        'categories.Nom_Categorie as Nom_Categorie')->findOrFail($id);
+        'categories.Nom_Categorie as Nom_Categorie')->where('ID_Formation', $id)->first();
 
         // $formations = Formations::findOrFail($id);
         $total = 0;
@@ -205,15 +205,15 @@ class CourseController extends Controller
         return redirect()->back()->with('flash_message_success', 'Cours ajouté au panier avec succès!', compact('formations'));
     }
 
-     public function remove(Request $request)
-    {
-        if($request->id) {
-            $cart = session()->get('cart');
-            if(isset($cart[$request->id])) {
-                unset($cart[$request->id]);
-                session()->put('cart', $cart);
-            }
-            session()->flash('success', 'Cours retiré avec succès!');
-        }
-    }
+//      public function remove(Request $request)
+//     {
+//         if($request->id) {
+//             $cart = session()->get('cart');
+//             if(isset($cart[$request->id])) {
+//                 unset($cart[$request->id]);
+//                 session()->put('cart', $cart);
+//             }
+//             session()->flash('success', 'Cours retiré avec succès!');
+//         }
+//     }
 }
