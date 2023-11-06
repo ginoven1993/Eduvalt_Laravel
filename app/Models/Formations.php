@@ -15,6 +15,7 @@ class Formations extends Model
         'titre',
         'chapitre',
         'Heure',
+        'firstDescrip',
         'Descriptionp',
         'Descriptionc',
         'Descriptiond',
@@ -22,7 +23,8 @@ class Formations extends Model
         'Prix',
         'chapterone',
         'chaptertwo',
-        'chapterthree','chapterfour',
+        'chapterthree',
+        'chapterfour',
         'chapterfive',
         'chaptersix',
         'chapterseven',
@@ -42,7 +44,11 @@ class Formations extends Model
         'studentLesson',
         'studentTeacher',
         'ratenote',
-        'files',
+        'authors',
+        'images',
+        'rates',
+        'videos',
+        'courses_video',
     ];
 
     public function formateurs()

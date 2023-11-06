@@ -4,30 +4,55 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Eduvalt - Online Courses & Education Template</title>
+    <title>Eduvalt - @yield('title') </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/favicon.png')}}">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/animate.min.css">
-    <link rel="stylesheet" href="assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/css/flaticon-eduvalt.css">
-    <link rel="stylesheet" href="assets/css/default-icons.css">
-    <link rel="stylesheet" href="assets/css/select2.min.css">
-    <link rel="stylesheet" href="assets/css/odometer.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
-    <link rel="stylesheet" href="assets/css/aos.css">
-    <link rel="stylesheet" href="assets/css/spacing.css">
-    <link rel="stylesheet" href="assets/css/tg-cursor.css">
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/animate.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/fontawesome-all.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/flaticon-eduvalt.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/default-icons.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/odometer.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/aos.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/spacing.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/tg-cursor.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
 </head>
 
 <body>
+
+    @if (Session::has('flash_message_error'))
+    <script type="text/javascript" src="{{asset('assets/js/sweetalert2.all.min.js')}}"></script>
+    <script type="text/javascript">;
+    Swal.fire({
+    position: 'center',
+    icon: 'error',
+    title: "{{ session('flash_message_error') }}",
+    showConfirmButton: false,
+    timer: 100000
+    });
+    </script>
+    @endif
+    @if (Session::has('flash_message_success'))
+    <script type="text/javascript" src="{{asset('assets/js/sweetalert2.all.min.js')}}"></script>
+    <script type="text/javascript">;
+    Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: "{{ session('flash_message_success') }}",
+    showConfirmButton: false,
+    timer: 100000
+    });
+    </script>
+@endif
 
     <!-- Preloader -->
     <div id="preloader">
@@ -58,14 +83,14 @@
                           <div class="tgmenu__wrap">
                               <nav class="tgmenu__nav">
                                   <div class="logo" >
-                                      <a href="index-2.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                                      <a href="index-2.html"><img src="{{asset('assets/img/logo/logo.png')}}" alt="Logo"></a>
                                   </div>
                                   <div class="tgmenu__navbar-wrap tgmenu__main-menu d-none d-xl-flex"  style="margin-left: 200px;">
                                       <ul class="navigation">
-                                          <li class="active menu-item"><a href="index.php">Accueil</a></li>
+                                          <li class="active menu-item"><a href="/">Accueil</a></li>
                                           <li class="menu-item"><a href="courses.php">Cours</a></li>
                                           <li class="menu-item"><a href="contact.php">contact</a></li>
-                                          
+                                          <li class="menu-item"><a href="/upload_courses">Upload</a></li>
                                       </ul>
                                   </div>
                                   <div class="tgmenu__categories d-none d-md-block">
@@ -89,8 +114,8 @@
                                       <ul class="list-wrap">
                                           <li class="mini-cart-icon">
                                               <a href="shop-details.php" class="cart-count">
-                                                  <img src="assets/img/icons/cart.svg" alt="cart">
-                                                  <span class="mini-cart-count" id="cart-count">0</span> 
+                                                  <img src="{{asset('assets/img/icons/cart.svg')}}" alt="cart">
+                                                  <span class="mini-cart-count" id="cart-count">{{ count((array) session('cart')) }}</span> 
                                               </a>
                                           </li>                                       
                                       </ul>
@@ -102,7 +127,7 @@
                               <nav class="tgmobile__menu-box">
                                   <div class="close-btn"><i class="tg-flaticon-close-1"></i></div>
                                   <div class="nav-logo">
-                                      <a href="index-2.html"><img src="assets/img/logo/logo.png" alt="Logo"></a>
+                                      <a href="index-2.html"><img src="{{asset('assets/img/logo/logo.png')}}" alt="Logo"></a>
                                   </div>
                                   <div class="tgmobile__search">
                                       <form action="#">
@@ -156,7 +181,7 @@
                     <div class="footer-widget">
                         <div class="footer__about">
                             <div class="footer__logo logo">
-                                <a href="index-2.html"><img src="assets/img/logo/secondary_logo.png" alt="img"></a>
+                                <a href="index-2.html"><img src="{{asset('assets/img/logo/secondary_logo.png')}}" alt="img"></a>
                             </div>
                             <p>when an unknown printer took galley of type and scrambled it to make pspecimen bookt has.</p>
                             <ul class="list-wrap m-0 p-0">
@@ -241,23 +266,25 @@
 
 
 <!-- JS here -->
-<script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/isotope.pkgd.min.js"></script>
-<script src="assets/js/imagesloaded.pkgd.min.js"></script>
-<script src="assets/js/jquery.magnific-popup.min.js"></script>
-<script src="assets/js/jquery.odometer.min.js"></script>
-<script src="assets/js/jquery.appear.js"></script>
-<script src="assets/js/tween-max.min.js"></script>
-<script src="assets/js/select2.min.js"></script>
-<script src="assets/js/slick.min.js"></script>
-<script src="assets/js/slick-animation.min.js"></script>
-<script src="assets/js/tg-cursor.min.js"></script>
-<script src="assets/js/vivus.min.js"></script>
-<script src="assets/js/ajax-form.js"></script>
-<script src="assets/js/wow.min.js"></script>
-<script src="assets/js/aos.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="{{asset('assets/js/vendor/jquery-3.6.0.min.js')}}"></script>
+<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/js/isotope.pkgd.min.js')}}"></script>
+<script src="{{asset('assets/js/imagesloaded.pkgd.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.odometer.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.appear.js')}}"></script>
+<script src="{{asset('assets/js/tween-max.min.js')}}"></script>
+<script src="{{asset('assets/js/select2.min.js')}}"></script>
+<script src="{{asset('assets/js/slick.min.js')}}"></script>
+<script src="{{asset('assets/js/slick-animation.min.js')}}"></script>
+<script src="{{asset('assets/js/tg-cursor.min.js')}}"></script>
+<script src="{{asset('assets/js/vivus.min.js')}}"></script>
+<script src="{{asset('assets/js/ajax-form.js')}}"></script>
+<script src="{{asset('assets/js/wow.min.js')}}"></script>
+<script src="{{asset('assets/js/aos.js')}}"></script>
+<script src="{{asset('assets/js/main.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/sweetalert2.all.min.js')}}"></script>
+
 </body>
 
 

@@ -1,4 +1,9 @@
 @extends('layouts.template')
+
+@section('title')
+Online Courses & Education Template
+@endsection
+
 @section('content')
 
 <!-- banner-area -->
@@ -107,112 +112,44 @@
             </div>
         </div>
         <div class="row courses-active row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-            <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "lms";
-
-            $conn = new mysqli($servername, $username, $password, $dbname);
-
-            if ($conn->connect_error) {
-                die("La connexion à la base de données a échoué : " . $conn->connect_error);
-            }
-            $sql = "SELECT * FROM formations  ORDER BY ID_formation DESC LIMIT 8";
-            $result = $conn->query($sql);
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $formateur = $row["ID_Formateur"];
-                    $title = $row["Titre"];
-                    $duration = $row["Heure"];
-                    $chapter = $row["chapitre"];
-                    $price = $row["Prix"];
-                    $langage = $row["langue"];
-                    $category = $row["ID_Categorie"];
-                    $id_formation = $row["ID_Formation"];
-                    $studentLesson = $row["studentLesson"];
-                    $ratenote = $row["ratenote"];
-                    $lien_details = "course-details.php?id=".$id_formation;
-
-                    // Récupération de l'image de la formation
-                    $sql_images = "SELECT nom_image FROM images WHERE ID_Formation = $id_formation ORDER BY ID_image LIMIT 1";
-                    $result_images = $conn->query($sql_images);
-
-                    // Récupération de l'image de l'auteur
-                    $sql_auth_images = "SELECT nom_image FROM authors WHERE ID_Formation = $id_formation ORDER BY ID_image LIMIT 1";
-                    $result_auth_images = $conn->query($sql_auth_images);
-
-                    // Récupération du nom de la catégorie
-                    $sql_category = "SELECT Nom_Categorie FROM Categories WHERE ID_Categorie = $category";
-                    $result_category = $conn->query($sql_category);
-                    $category_name = "";
-                    if ($result_category->num_rows > 0) {
-                        $category_row = $result_category->fetch_assoc();
-                        $category_name = $category_row["Nom_Categorie"];
-                    }
-
-                    // Récupération du nom du formateur
-                    $sql_formateur = "SELECT Nom_formateur FROM formateurs WHERE ID_Formateur = $formateur";
-                    $result_formateur = $conn->query($sql_formateur);
-                    $formateur_name = "";
-                    if ($result_formateur->num_rows > 0) {
-                        $formateur_row = $result_formateur->fetch_assoc();
-                        $formateur_name = $formateur_row["Nom_formateur"];
-                    }
-                    echo '<div class="col grid-item cat-two cat-three">
+            @foreach ($formations as $formation)     
+                <div class="col grid-item cat-two cat-three">
                             <div class="courses__item-two shine__animate-item">
                                 <div class="courses__item-two-thumb">
-                                    <a href="' . $lien_details . '" class="shine__animate-link">';
-                    if ($result_images !== false && $result_images->num_rows > 0) {
-                        while ($image_row = $result_images->fetch_assoc()) {
-                            $chemin_image = 'lms/img/' . $image_row["nom_image"];
-                            echo "<img src='$chemin_image'>";
-                        }
-                    } else {
-                        // Vous pouvez gérer le cas où aucune image n'est trouvée ici si nécessaire
-                    }
-                    echo '</a>
+                                    <a href="/courses-details/{{$formation->ID_Formation}}" class="shine__animate-link">
+                                        <img src='{{asset('assets2/lms/img/'.$formation->image)}}'>
+                                    </a>
                                     <div class="course__price">
                                         <svg viewBox="0 0 104 34" fill="none" x="0px" y="0px" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M17.5689 2.56089L0 34H99C101.761 34 104 31.7614 104 29V0H21.9336C20.1223 0 18.4525 0.979667 17.5689 2.56089Z" fill="currentColor"/>
                                         </svg>
-                                        <h3 class="price">' . number_format($price, 0, '', '') . ' CFA</h3>
+                                        <h3 class="price">{{$formation->prix}} CFA</h3>
                                     </div>
                                 </div>
                                 <div class="courses__item-two-content">
-                                    <a href="#" class="courses__item-tag" style="background-color: #E8F9EF; color: #04BC53;">' . $category_name . '</a>
-                                    <h5 class="title"><a href="' . $lien_details . '">' . $title . '</a></h5>
+                                    <a href="#" class="courses__item-tag" style="background-color: #E8F9EF; color: #04BC53;">{{$formation->Nom_Categorie}}</a>
+                                    <h5 class="title"><a href="/courses-details/{{$formation->ID_Formation}}"> <strong>{{$formation->titre}}</strong></a></h5>
                                     <ul class="courses__item-meta list-wrap">
-                                        <li><i class="flaticon-file"></i> ' . $chapter . '</li>
-                                        <li><i class="flaticon-timer"></i>' . $duration . '</li>
-                                        <li><i class="flaticon-user-1"></i>' . $studentLesson . '</li>
+                                        <li><i class="flaticon-file"></i>{{$formation->chapitre}}</li>
+                                        <li><i class="flaticon-timer"></i>{{$formation->heure}}</li>
+                                        <li><i class="flaticon-user-1"></i>{{$formation->studentLesson}}</li>
                                     </ul>
                                     <div class="courses__item-bottom">
                                         <div class="author">
-                                            <a href="#">';
-                    if ($result_auth_images !== false && $result_auth_images->num_rows > 0) {
-                        while ($image_row = $result_auth_images->fetch_assoc()) {
-                            $chemin_image = 'lms/authors/' . $image_row["nom_image"];
-                            echo "<img src='$chemin_image'>";
-                        }
-                    } else {
-                        // Vous pouvez gérer le cas où aucune image n'est trouvée ici si nécessaire
-                    }
-                    echo '</a>
-                                            <a href="#">' . $formateur_name . '</a>
+                                            <a href="#">
+                                                <img src='{{asset('assets2/lms/authors/'.$formation->author_image)}}'>
+                                            </a>
+                                            <a href="#">{{ $formation->Nom_formateur }}</a>
                                         </div>
                                         <div class="courses__item-rating">
                                             <i class="fas fa-star"></i>
-                                            <span class="rating-count">(' . $ratenote . ')</span>
+                                            <span class="rating-count">({{ $formation->ratenote }})</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>';
-                }
-            }
-            ?>
+                </div>
+                @endforeach
         </div>
     </div>
 </section>

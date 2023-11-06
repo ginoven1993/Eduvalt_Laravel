@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
+
+Route::match(['get', 'post'], '/', 'App\Http\Controllers\IndexController@index');
+Route::match(['get', 'post'], '/upload_courses', 'App\Http\Controllers\CourseController@index');
+Route::match(['get', 'post'], '/upload_courses/store', 'App\Http\Controllers\CourseController@store')->name('store.courses');
+Route::match(['get', 'post'], '/courses-details/{id}', 'App\Http\Controllers\CourseController@show');
+Route::match(['get', 'post'], '/add_to_cart/{id}', 'App\Http\Controllers\CourseController@addToCart')->name('add_to_cart');
+
