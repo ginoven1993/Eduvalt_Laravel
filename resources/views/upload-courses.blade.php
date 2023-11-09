@@ -72,11 +72,8 @@ Upload Courses
                             <div class="col-md-6">
                                 <div class="form-grp">
                                     <select id="formateur" name="ID_Formateur">
-                                        @foreach ($formateurs as $formateur)
-                                           
-                                                <option value="{{$formateur->ID_Formateur}}">{{$formateur->Nom_formateur}}</option>
-                                             
-                                           
+                                        @foreach ($formateurs as $formateur)    
+                                                <option value="{{$formateur->ID_Formateur}}">{{$formateur->Nom_formateur}}</option>   
                                         @endforeach
                                     </select>
                                 </div>
@@ -84,7 +81,7 @@ Upload Courses
 
                             <div class="col-md-6">
                                 <div class="form-grp">
-                                    <input name="titre" type="text" placeholder="Titre *" required>
+                                    <input name="Titre" type="text" placeholder="Titre *" required>
                                 </div>
                             </div>
                             
@@ -113,9 +110,7 @@ Upload Courses
                                 <div class="form-grp">
                                     <select id="category" name="ID_Categorie">
                                         @foreach ($categories as $categorie)
-                                       
-                                            <option value="{{$categorie->ID_Categorie}}">{{$categorie->Nom_Categorie}}</option>
-                                          
+                                            <option value="{{$categorie->ID_Categorie}}">{{$categorie->Nom_Categorie}}</option>         
                                     @endforeach
                                     </select>
                                 </div>
@@ -123,7 +118,7 @@ Upload Courses
 
                             <div class="col-md-6">
                                 <div class="form-grp">
-                                    <input name="firstDescrip" type="text" placeholder="Description *" required>
+                                    <input name="Descriptionp" type="text" placeholder="Description *" required>
                                 </div>
                             </div>
                             <div class="col-md-6">

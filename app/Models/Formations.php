@@ -9,13 +9,11 @@ class Formations extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'ID_Formation',
         'ID_Formateur',
         'ID_Categorie',
-        'titre',
+        'Titre',
         'chapitre',
         'Heure',
-        'firstDescrip',
         'Descriptionp',
         'Descriptionc',
         'Descriptiond',

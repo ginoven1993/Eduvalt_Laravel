@@ -54,7 +54,7 @@ class CourseController extends Controller
                 Formations::create([
                     'ID_Formateur'  => $request->ID_Formateur,
                     'ID_Categorie'  => $request->ID_Categorie,
-                    'titre'  => $request->titre,
+                    'Titre'  => $request->Titre,
                     'chapitre'  => $request->chapitre,
                     'Heure'  => $request->Heure,
                     'Descriptionp'  => $request->Descriptionp,
@@ -117,7 +117,7 @@ class CourseController extends Controller
         ->select('categories.Nom_Categorie as Nom_Categorie',
         'formations.ID_Formation as ID_Formation',
         'formations.Prix as prix',
-        'formations.titre as titre',
+        'formations.Titre as titre',
         'formations.images as image')->where('Nom_Categorie', $courses->Nom_Categorie)->limit(3)->get();
 
       
@@ -127,7 +127,7 @@ class CourseController extends Controller
         ->join('categories', 'formations.ID_Categorie', '=', 'categories.ID_Categorie')
         ->select('formations.ID_Formation as ID_Formation',
         'formations.Prix as prix',
-        'formations.titre as titre',
+        'formations.Titre as titre',
         'formations.chapitre as chapitre',
         'formations.Heure as heure',
         'formations.langue as langue',
@@ -165,7 +165,7 @@ class CourseController extends Controller
         ->join('categories', 'formations.ID_Categorie', '=', 'categories.ID_Categorie')
         ->select('formations.ID_Formation as ID_Formation',
         'formations.Prix as prix',
-        'formations.titre as titre',
+        'formations.Titre as titre',
         'formations.chapitre as chapitre',
         'formations.Heure as heure',
         'formations.langue as langue',
