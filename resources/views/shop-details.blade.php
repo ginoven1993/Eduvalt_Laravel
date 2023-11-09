@@ -73,7 +73,7 @@ Shop Details
               </section>
   
               <!-- Order summary -->
-              <section aria-labelledby="summary-heading" class="mt-10">
+              <section aria-labelledby="summary-heading" class="mt-10 d-flex" style="justify-content: center;align-items:center;flex-direction:column;">
                 <h2 id="summary-heading" class="sr-only">Order summary</h2>
   
                 <div>
