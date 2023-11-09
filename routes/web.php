@@ -19,5 +19,7 @@ Route::match(['get', 'post'], '/', 'App\Http\Controllers\IndexController@index')
 Route::match(['get', 'post'], '/upload_courses', 'App\Http\Controllers\CourseController@index');
 Route::match(['get', 'post'], '/upload_courses/store', 'App\Http\Controllers\CourseController@store')->name('store.courses');
 Route::match(['get', 'post'], '/courses-details/{id}', 'App\Http\Controllers\CourseController@show');
+Route::match(['get', 'post'], '/remove_shop/{id}', 'App\Http\Controllers\CourseController@remove')->name('remove_from_cart');
 Route::match(['get', 'post'], '/add_to_cart/{id}', 'App\Http\Controllers\CourseController@addToCart')->name('add_to_cart');
+Route::match(['get', 'post'], '/shop-details', 'App\Http\Controllers\IndexController@show')->name('shop.details');
 

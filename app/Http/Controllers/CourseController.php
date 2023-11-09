@@ -57,7 +57,6 @@ class CourseController extends Controller
                     'titre'  => $request->titre,
                     'chapitre'  => $request->chapitre,
                     'Heure'  => $request->Heure,
-                    'firstDescrip'  => $request->firstDescrip,
                     'Descriptionp'  => $request->Descriptionp,
                     'Descriptionc'  => $request->Descriptionc,
                     'Descriptiond'  => $request->Descriptiond,
@@ -110,6 +109,8 @@ class CourseController extends Controller
         ->select('categories.Nom_Categorie as Nom_Categorie')
         ->where('ID_Formation', $id)->first();
 
+        // dd($courses);
+
         $relates = DB::table('formations')
         ->join('formateurs', 'formations.ID_Formateur', '=', 'formateurs.ID_Formateur')
         ->join('categories', 'formations.ID_Categorie', '=', 'categories.ID_Categorie')
@@ -136,7 +137,6 @@ class CourseController extends Controller
         'formations.Descriptionp as Descriptionp',
         'formations.Descriptionc as Descriptionc',
         'formations.Descriptiond as Descriptiond',
-        'formations.firstDescrip as firstDescrip',
         'formations.authors as author_image',
         'formations.images as image',
         'formations.rates as rate',
@@ -175,7 +175,6 @@ class CourseController extends Controller
         'formations.Descriptionp as Descriptionp',
         'formations.Descriptionc as Descriptionc',
         'formations.Descriptiond as Descriptiond',
-        'formations.firstDescrip as firstDescrip',
         'formations.authors as author_image',
         'formations.images as image',
         'formations.rates as rate',
@@ -184,13 +183,13 @@ class CourseController extends Controller
         'formateurs.long_bio as long_bio',
         'categories.Nom_Categorie as Nom_Categorie')->where('ID_Formation', $id)->first();
 
-        // $formations = Formations::findOrFail($id);
         $total = 0;
         $total += $formations->prix;
 
         $cart = session()->get('cart', []);
         if(isset($cart[$id])) {
                 $cart[$id]['quantity']++;
+
         } else {
             $cart[$id] = [
                 "Nom_formateur" => $formations->Nom_formateur,
@@ -205,15 +204,15 @@ class CourseController extends Controller
         return redirect()->back()->with('flash_message_success', 'Cours ajouté au panier avec succès!', compact('formations'));
     }
 
-//      public function remove(Request $request)
-//     {
-//         if($request->id) {
-//             $cart = session()->get('cart');
-//             if(isset($cart[$request->id])) {
-//                 unset($cart[$request->id]);
-//                 session()->put('cart', $cart);
-//             }
-//             session()->flash('success', 'Cours retiré avec succès!');
-//         }
-//     }
+    public function remove(Request $request, $id){
+        if($id) {
+            $cart = session()->get('cart');
+            if(isset($cart[$id])) {
+                unset($cart[$id]);
+                session()->put('cart', $cart);
+            }
+            return redirect()->back()->with('flash_message_success', 'Cours retiré avec succès!');
+            // session()->flash('success', 'Cours retiré avec succès!');
+        }
+    }
 }

@@ -45,6 +45,9 @@ class IndexController extends Controller
         return view('index', compact('formations'));
     }
 
+    public function show(){
+        return view('shop-details');
+    }
 
 
 }

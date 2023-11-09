@@ -113,7 +113,7 @@
                                   <div class="tgmenu__action">
                                       <ul class="list-wrap">
                                           <li class="mini-cart-icon">
-                                              <a href="shop-details.php" class="cart-count">
+                                              <a href="{{route('shop.details')}}" class="cart-count">
                                                   <img src="{{asset('assets/img/icons/cart.svg')}}" alt="cart">
                                                   <span class="mini-cart-count" id="cart-count">{{ count((array) session('cart')) }}</span> 
                                               </a>

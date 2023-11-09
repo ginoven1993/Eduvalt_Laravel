@@ -12,7 +12,7 @@ Courses details
                         <div class="courses__breadcrumb-content">
                             <a href="#" class="category">{{$details->Nom_Categorie}}</a>
                             <h3 class="title">{{$details->titre}}</h3>
-                            <p>{{$details->firstDescrip}}</p>
+                            <p>{{$details->Descriptionp}}</p>
                             <ul class="courses__item-meta list-wrap">
                                 <li>
                                     <div class="author">
@@ -248,7 +248,7 @@ Courses details
                             <div class="event-widget">
                                 <div class="thumb">
                                     <img src="{{asset('assets2/lms/img/'.$details->image)}}">
-                                    <a class="popup-video" href="{{asset('assets2/lms/videos/'.$details->video)}}"><video src="" controls><i class="fas fa-play"></i></video></a>
+                                    <a class="popup-video" src="{{asset('assets2/lms/videos/'.$details->video)}}" controls><i class="fas fa-play"></i></a>
                                 </div>
                                 <div class="event-cost-wrap">
                                     <h4 class="price"><strong>Prix:</strong>{{$details->prix}} CFA</h4>
