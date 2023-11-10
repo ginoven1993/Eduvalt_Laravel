@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/spacing.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/tg-cursor.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    <script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
 </head>
 
 <body>
@@ -37,7 +38,7 @@
     icon: 'error',
     title: "{{ session('flash_message_error') }}",
     showConfirmButton: false,
-    timer: 100000
+    timer: 5000
     });
     </script>
     @endif
@@ -49,7 +50,7 @@
     icon: 'success',
     title: "{{ session('flash_message_success') }}",
     showConfirmButton: false,
-    timer: 100000
+    timer: 5000
     });
     </script>
 @endif

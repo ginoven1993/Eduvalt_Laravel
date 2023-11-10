@@ -212,7 +212,7 @@ class CourseController extends Controller
                 session()->put('cart', $cart);
             }
             return redirect()->back()->with('flash_message_success', 'Cours retiré avec succès!');
-            // session()->flash('success', 'Cours retiré avec succès!');
+           
         }
     }
 }

@@ -85,9 +85,12 @@ Shop Details
                   </dl>
                   <p class="mt-1 text-sm text-gray-500">Shipping and taxes will be calculated at checkout.</p>
                 </div>
+                <input type="hidden" name="{{$details['titre']}}">
+                <input type="hidden" name="{{$details['total_Prix']}}">
+                <input type="hidden" name="{{$details['total_Prix']}}">
   
                 <div class="mt-10">
-                  <button type="submit" class="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Checkout</button>
+                  <button type="submit" class="check w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50">Checkout</button>
                 </div>
   
                 <div class="mt-6 text-center text-sm">
@@ -100,9 +103,18 @@ Shop Details
                   </p>
                 </div>
               </section>
+              <script
+                  src="https://cdn.fedapay.com/checkout.js?v=1.1.7"
+                  data-public-key="pk_live_Atu37u2k2DcywiPEqC_JOsTd"
+                  data-button-text="CheckOut"
+                  data-button-class="check"
+                  data-transaction-amount="{{$details['total_Prix']}}"
+                  data-transaction-description="Payement de cours"
+                  data-currency-iso="XOF">
+              </script>
           </form>
           @else
-           <h4 class="text-center">Aucune cours dans le panier </h4>
+           <h4 class="text-center">Aucun cours dans le panier </h4>
         @endif
     </div>
   </div>
